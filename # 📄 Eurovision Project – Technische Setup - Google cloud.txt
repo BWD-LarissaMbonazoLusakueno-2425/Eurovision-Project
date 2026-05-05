@@ -1,0 +1,184 @@
+# 📄 Eurovision Project – Technische Setup
+
+## 1. Cassandra configuratie
+
+### Keyspace aanmaken
+
+```sql
+CREATE KEYSPACE IF NOT EXISTS eurovision
+WITH replication = {
+  'class': 'SimpleStrategy',
+  'replication_factor': 1
+};
+```
+
+### Tabel aanmaken
+
+```sql
+USE eurovision;
+
+CREATE TABLE IF NOT EXISTS votes (
+  country text,
+  votes bigint,
+  PRIMARY KEY (country)
+);
+```
+
+---
+
+## 2. Firewall regels (Google Cloud)
+
+Firewall rule om communicatie tussen VM’s en datacenters toe te laten:
+
+```bash
+gcloud compute firewall-rules create allow-eurovision \
+  --allow tcp:9092,tcp:9042,tcp:7077,tcp:8080,tcp:2181,tcp:4040 \
+  --source-ranges 0.0.0.0/0 \
+  --description "Eurovision pipeline ports"
+```
+
+### Gebruikte poorten
+
+| Service      | Poort |
+| ------------ | ----- |
+| Kafka        | 9092  |
+| Zookeeper    | 2181  |
+| Cassandra    | 9042  |
+| Spark Master | 7077  |
+| Spark UI     | 8080  |
+| Spark Jobs   | 4040  |
+
+---
+
+## 3. Docker Compose bestanden
+
+### 3.1 Kafka (dc1-kafka)
+
+```yaml
+version: "3"
+services:
+  zookeeper:
+    image: confluentinc/cp-zookeeper:7.4.0
+    environment:
+      ZOOKEEPER_CLIENT_PORT: 2181
+    restart: always
+
+  kafka:
+    image: confluentinc/cp-kafka:7.4.0
+    depends_on: [zookeeper]
+    ports:
+      - "9092:9092"
+    environment:
+      KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://<KAFKA_IP>:9092
+      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+    restart: always
+```
+
+---
+
+### 3.2 Spark (dc1-spark)
+
+```yaml
+services:
+  spark-master:
+    image: apache/spark:3.4.0
+    ports:
+      - "8080:8080"
+      - "7077:7077"
+    command: /opt/spark/bin/spark-class org.apache.spark.deploy.master.Master
+    restart: always
+
+  spark-worker:
+    image: apache/spark:3.4.0
+    depends_on: [spark-master]
+    command: /opt/spark/bin/spark-class org.apache.spark.deploy.worker.Worker spark://spark-master:7077
+    restart: always
+```
+
+---
+
+### 3.3 Cassandra (dc1-cassandra)
+
+```yaml
+services:
+  cassandra:
+    image: cassandra:4.1
+    ports:
+      - "9042:9042"
+    environment:
+      - CASSANDRA_CLUSTER_NAME=EurovisionCluster
+      - CASSANDRA_DC=DC1
+    volumes:
+      - cassandra_data:/var/lib/cassandra
+    restart: always
+
+volumes:
+  cassandra_data:
+```
+
+---
+
+## 4. Architectuur overzicht
+
+Je systeem bestaat uit 3 VM’s:
+
+* **VM1 (Kafka)** → ontvangt stemmen (producer)
+* **VM2 (Spark)** → verwerkt stemmen
+* **VM3 (Cassandra)** → slaat resultaten op
+
+### Data flow:
+
+```
+Producer → Kafka → Spark → Cassandra
+```
+
+---
+
+## 5. Inter-datacenter communicatie
+
+Voor samenwerking met andere teams:
+
+### Deel deze info:
+
+* Kafka IP + poort (9092)
+* Cassandra IP + poort (9042)
+* Keyspace: `eurovision`
+* Tabel: `votes`
+* Topic: `eurovision-votes`
+
+---
+
+## 6. Resultaat
+
+✔ 1000 stemmen gegenereerd
+✔ Verwerking via Kafka + Spark
+✔ Opslag in Cassandra
+✔ Ranking per land beschikbaar
+
+---
+
+## 7. Demo (kort)
+
+Voor opname:
+
+```bash
+gcloud compute instances list
+gcloud compute ssh dc1-kafka --command="sudo docker ps"
+gcloud compute ssh dc1-kafka --command="sudo docker run --rm --network host eurovision-producer"
+gcloud compute ssh dc1-spark --command="sudo docker run --rm --network host eurovision-spark"
+gcloud compute ssh dc1-cassandra --command="sudo docker exec eurovision-cassandra-1 cqlsh -e 'SELECT * FROM eurovision.votes;'"
+```
+
+---
+
+# ✅ Conclusie
+
+Je hebt een werkende **distributed data pipeline** met:
+
+* Multi-VM architectuur
+* Multi-container setup
+* Real-time data verwerking
+* Distributed database opslag
+
+---
