@@ -1,37 +1,7 @@
-![](media/image10.png){width="6.648211942257218in"
-height="0.8458333333333333in"}
+Adam Bouchikhi (r1048050)     Arsalan Borna (r1035349)    Larissa Mbonazo Lusakueno (r1029256)       Mohamed Amin Ahkim (r1038196) Saartje Cordier (r1037117)        
 
-+-------------------------------------------------------------:+
-|                                                              |
-+--------------------------------------------------------------+
-| Adam Bouchikhi (r1048050)                                    |
-|                                                              |
-| Arsalan Borna (r1035349)                                     |
-|                                                              |
-| Larissa Mbonazo Lusakueno (r1029256)                         |
-|                                                              |
-| Mohamed Amin Ahkim (r1038196)                                |
-|                                                              |
-| Saartje Cordier (r1037117)                                   |
-+--------------------------------------------------------------+
-| Tweede Bachelor Toegepaste Informatica                       |
-+--------------------------------------------------------------+
-|                                                              |
-+--------------------------------------------------------------+
-|                                                              |
-+--------------------------------------------------------------+
-| Integration Project 2                                        |
-+--------------------------------------------------------------+
-|                                                              |
-+--------------------------------------------------------------+
-| Academiejaar 2025-2026                                       |
-+--------------------------------------------------------------+
+ **Auditsysteem voor Eurovision contest**                                                       
 
-+---------------------------------:+-------------------------------------------------------------:+
-| **Auditsysteem voor Eurovision contest**                                                        |
-+----------------------------------+--------------------------------------------------------------+
-|                                  |                                                              |
-+----------------------------------+--------------------------------------------------------------+
 
 # Inhoudsopgave
 
@@ -1166,3 +1136,10 @@ piekbelasting.
 **Bijlage I:** Deliverables-map
 
 Map met alle scripts, outputs, txt-bestanden en een afbeelding.
+
+
+Gerealiseerd door
+
+Adam Bouchikhi (r1048050)     Arsalan Borna (r1035349)    Larissa Mbonazo Lusakueno (r1029256)       Mohamed Amin Ahkim (r1038196) Saartje Cordier (r1037117) 
+Tweede Bachelor Toegepaste Informatica Odisee
+Academiejaar 2025-2026
