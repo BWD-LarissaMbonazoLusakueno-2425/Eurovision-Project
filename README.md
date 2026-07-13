@@ -654,7 +654,7 @@ Een groot voordeel van Spark is de mogelijkheid om data parallel te
 verwerken. Aangezien dit ervoor zorgt dat er grote hoeveelheden data
 binnen een beperkte tijd kunnen worden verwerkt.
 
-## ![](media/image7.png){width="6.299660979877515in" height="3.3333333333333335in"}
+
 
 *Figuur 2: Output van het verwerkingsscript waarbij stemgedrag wordt
 geanalyseerd en een winnaar wordt bepaald*
@@ -684,15 +684,13 @@ virtuele machines opzetten. Hier konden we de verschillende componenten
 van het systeem gescheiden draaien, wat beter aansluit bij een
 gedistribueerde setup.
 
-![](media/image9.png){width="6.299660979877515in"
-height="4.194444444444445in"}
+
 
 Deze opstelling bewijst de geschiktheid van het systeem om verder te
 worden uitgebreid. Wat bewijst dat het systeem geschikt is voor een
 grotere infrastructuur
 
-![](media/image2.png){width="6.299660979877515in"
-height="6.777777777777778in"}
+
 
 *Figuur 3: Overzicht van virtuele machines in Google Cloud, verdeeld
 over meerdere componenten en datacenters*
@@ -758,7 +756,7 @@ Dit toont de correcte samenwerking van onze verschillende onderdelen in
 ons systeem aan en bewijst dat het in staat is om data van input tot
 output te verwerken.
 
-![](media/image5.png){width="6.299660979877515in" height="3.125in"}
+
 
 *Figuur 6: Uitvoering van de data pipeline waarbij grote hoeveelheden
 stemdata verwerkt worden en de performantie wordt weergegeven in
