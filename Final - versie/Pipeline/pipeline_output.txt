@@ -1,272 +1,0 @@
-==========================================================
-   EUROVISION AUDIT SYSTEEM - VOLLEDIGE PIPELINE
-   Odisee Hogeschool - Mega Data Challenge 2025-2026
-   Gestart op: 2026-05-25 05:58:07
-==========================================================
-
-STAP 1 - Alle 12 VM's opstarten...
-----------------------------------------------------------
-Starting instance(s) dc1-cassandra, dc1-kafka, dc1-spark, dc2-cassandra, dc2-kafka, dc2-spark, dc3-cassandra, dc3-kafka, dc3-spark, dc4-cassandra, dc4-kafka, dc4-spark...
-.done.
-Updated [https://compute.googleapis.com/compute/v1/projects/project-c15907ce-0bab-4a45-b70/zones/europe-west1-b/instances/dc1-cassandra].
-Instance internal IP is 10.132.0.7
-Instance external IP is 34.53.224.254
-Updated [https://compute.googleapis.com/compute/v1/projects/project-c15907ce-0bab-4a45-b70/zones/europe-west1-b/instances/dc1-kafka].
-Instance internal IP is 10.132.0.5
-Instance external IP is 34.14.80.20
-Updated [https://compute.googleapis.com/compute/v1/projects/project-c15907ce-0bab-4a45-b70/zones/europe-west1-b/instances/dc1-spark].
-Instance internal IP is 10.132.0.6
-Instance external IP is 34.53.243.56
-Updated [https://compute.googleapis.com/compute/v1/projects/project-c15907ce-0bab-4a45-b70/zones/europe-west1-b/instances/dc2-cassandra].
-Instance internal IP is 10.132.0.8
-Updated [https://compute.googleapis.com/compute/v1/projects/project-c15907ce-0bab-4a45-b70/zones/europe-west1-b/instances/dc2-kafka].
-Instance internal IP is 10.132.0.9
-Updated [https://compute.googleapis.com/compute/v1/projects/project-c15907ce-0bab-4a45-b70/zones/europe-west1-b/instances/dc2-spark].
-Instance internal IP is 10.132.0.10
-Updated [https://compute.googleapis.com/compute/v1/projects/project-c15907ce-0bab-4a45-b70/zones/europe-west1-b/instances/dc3-cassandra].
-Instance internal IP is 10.132.0.12
-Updated [https://compute.googleapis.com/compute/v1/projects/project-c15907ce-0bab-4a45-b70/zones/europe-west1-b/instances/dc3-kafka].
-Instance internal IP is 10.132.0.14
-Updated [https://compute.googleapis.com/compute/v1/projects/project-c15907ce-0bab-4a45-b70/zones/europe-west1-b/instances/dc3-spark].
-Instance internal IP is 10.132.0.16
-Updated [https://compute.googleapis.com/compute/v1/projects/project-c15907ce-0bab-4a45-b70/zones/europe-west1-b/instances/dc4-cassandra].
-Instance internal IP is 10.132.0.13
-Updated [https://compute.googleapis.com/compute/v1/projects/project-c15907ce-0bab-4a45-b70/zones/europe-west1-b/instances/dc4-kafka].
-Instance internal IP is 10.132.0.15
-Updated [https://compute.googleapis.com/compute/v1/projects/project-c15907ce-0bab-4a45-b70/zones/europe-west1-b/instances/dc4-spark].
-Instance internal IP is 10.132.0.17
-✓ Alle 12 VM's opgestart
-
-STAP 2 - Wachten tot alle VM's SSH-bereikbaar zijn...
-----------------------------------------------------------
-  Wachten op dc1-cassandra... ok
-✓ bereikbaar
-  Wachten op dc1-kafka... ok
-✓ bereikbaar
-  Wachten op dc1-spark... ok
-✓ bereikbaar
-  Wachten op dc2-cassandra... ok
-✓ bereikbaar
-  Wachten op dc2-kafka... ok
-✓ bereikbaar
-  Wachten op dc2-spark... ok
-✓ bereikbaar
-  Wachten op dc3-cassandra... ok
-✓ bereikbaar
-  Wachten op dc3-kafka... ok
-✓ bereikbaar
-  Wachten op dc3-spark... ok
-✓ bereikbaar
-  Wachten op dc4-cassandra... ok
-✓ bereikbaar
-  Wachten op dc4-kafka... ok
-✓ bereikbaar
-  Wachten op dc4-spark... ok
-✓ bereikbaar
-
-STAP 3 - Docker containers controleren en starten...
-----------------------------------------------------------
-  [Kafka containers]
-  dc1-kafka: Zookeeper=true | Kafka=true
-  dc2-kafka: Zookeeper=true | Kafka=true
-  dc3-kafka: Zookeeper=true | Kafka=true
-  dc4-kafka: Zookeeper=true | Kafka=true
-  [Spark containers]
-  dc1-spark: Spark-master=true | Spark-worker=true
-  dc2-spark: Spark-master=true | Spark-worker=true
-  dc3-spark: Spark-master=true | Spark-worker=true
-  dc4-spark: Spark-master=true | Spark-worker=true
-  [Cassandra + Hadoop containers]
-  dc1-cassandra: Cassandra=true | Namenode=true | Datanode=true
-  dc2-cassandra: Cassandra=true | Namenode=true | Datanode=true
-  dc3-cassandra: Cassandra=true | Namenode=true | Datanode=true
-  dc4-cassandra: Cassandra=true | Namenode=true | Datanode=true
-
-STAP 4 - Overzicht actieve containers per VM:
-----------------------------------------------------------
-  [dc1-cassandra]
-eurovision-datanode | Up 41 minutes (healthy) | bde2020/hadoop-datanode:2.0.0-hadoop3.2.1-java8
-eurovision-cassandra | Up 41 minutes | cassandra:4.1
-eurovision-namenode | Up 41 minutes (healthy) | bde2020/hadoop-namenode:2.0.0-hadoop3.2.1-java8
-  [dc1-kafka]
-larissa_mbonazolusakueno-kafka-1 | Up 40 minutes | confluentinc/cp-kafka:7.4.0
-larissa_mbonazolusakueno-zookeeper-1 | Up 41 minutes | confluentinc/cp-zookeeper:7.4.0
-  [dc1-spark]
-larissa_mbonazolusakueno-spark-worker-1 | Up 40 minutes | apache/spark:3.4.0
-larissa_mbonazolusakueno-spark-master-1 | Up 40 minutes | apache/spark:3.4.0
-  [dc2-cassandra]
-eurovision-datanode | Up 41 minutes (healthy) | bde2020/hadoop-datanode:2.0.0-hadoop3.2.1-java8
-eurovision-cassandra | Up 41 minutes | cassandra:4.1
-eurovision-namenode | Up 41 minutes (healthy) | bde2020/hadoop-namenode:2.0.0-hadoop3.2.1-java8
-  [dc2-kafka]
-larissa_mbonazolusakueno-kafka-1 | Up 40 minutes | confluentinc/cp-kafka:7.4.0
-larissa_mbonazolusakueno-zookeeper-1 | Up 41 minutes | confluentinc/cp-zookeeper:7.4.0
-  [dc2-spark]
-larissa_mbonazolusakueno-spark-worker-1 | Up 41 minutes | apache/spark:3.4.0
-larissa_mbonazolusakueno-spark-master-1 | Up 41 minutes | apache/spark:3.4.0
-  [dc3-cassandra]
-eurovision-datanode | Up 41 minutes (healthy) | bde2020/hadoop-datanode:2.0.0-hadoop3.2.1-java8
-eurovision-cassandra | Up 41 minutes | cassandra:4.1
-eurovision-namenode | Up 41 minutes (healthy) | bde2020/hadoop-namenode:2.0.0-hadoop3.2.1-java8
-  [dc3-kafka]
-larissa_mbonazolusakueno-kafka-1 | Up 40 minutes | confluentinc/cp-kafka:7.4.0
-larissa_mbonazolusakueno-zookeeper-1 | Up 41 minutes | confluentinc/cp-zookeeper:7.4.0
-  [dc3-spark]
-larissa_mbonazolusakueno-spark-worker-1 | Up 41 minutes | apache/spark:3.4.0
-larissa_mbonazolusakueno-spark-master-1 | Up 41 minutes | apache/spark:3.4.0
-  [dc4-cassandra]
-eurovision-datanode | Up 41 minutes (healthy) | bde2020/hadoop-datanode:2.0.0-hadoop3.2.1-java8
-eurovision-cassandra | Up 41 minutes | cassandra:4.1
-eurovision-namenode | Up 41 minutes (healthy) | bde2020/hadoop-namenode:2.0.0-hadoop3.2.1-java8
-  [dc4-kafka]
-larissa_mbonazolusakueno-kafka-1 | Up 41 minutes | confluentinc/cp-kafka:7.4.0
-larissa_mbonazolusakueno-zookeeper-1 | Up 41 minutes | confluentinc/cp-zookeeper:7.4.0
-  [dc4-spark]
-larissa_mbonazolusakueno-spark-worker-1 | Up 41 minutes | apache/spark:3.4.0
-larissa_mbonazolusakueno-spark-master-1 | Up 41 minutes | apache/spark:3.4.0
-
-STAP 5 - Alle 12 producers starten (stemmen genereren)...
-----------------------------------------------------------
-✓ Alle 12 VM's sturen stemmen naar Kafka
-
-STAP 6 - Wachten 30 seconden voor stemmen binnenkomen...
-----------------------------------------------------------
-  Nog 30 seconden...  Nog 29 seconden...  Nog 28 seconden...  Nog 27 seconden...  Nog 26 seconden...  Nog 25 seconden...  Nog 24 seconden...  Nog 23 seconden...  Nog 22 seconden...  Nog 21 seconden...  Nog 20 seconden...  Nog 19 seconden...  Nog 18 seconden...  Nog 17 seconden...  Nog 16 seconden...  Nog 15 seconden...  Nog 14 seconden...  Nog 13 seconden...  Nog 12 seconden...  Nog 11 seconden...  Nog 10 seconden...  Nog 9 seconden...  Nog 8 seconden...  Nog 7 seconden...  Nog 6 seconden...  Nog 5 seconden...  Nog 4 seconden...  Nog 3 seconden...  Nog 2 seconden...  Nog 1 seconden...✓ Wachttijd voorbij                    
-
-STAP 7 - Throughput per VM:
-----------------------------------------------------------
-  dc1-cassandra: Gemiddelde throughput : 3,371,383 events/sec
-  dc1-kafka: Gemiddelde throughput : 2,563,944 events/sec
-  dc1-spark: Gemiddelde throughput : 3,591,014 events/sec
-  dc2-cassandra: Gemiddelde throughput : 3,801,289 events/sec
-  dc2-kafka: Gemiddelde throughput : 2,894,720 events/sec
-  dc2-spark: Gemiddelde throughput : 4,061,650 events/sec
-  dc3-cassandra: Gemiddelde throughput : 3,400,328 events/sec
-  dc3-kafka: Gemiddelde throughput : 3,530,856 events/sec
-  dc3-spark: Gemiddelde throughput : 3,416,531 events/sec
-  dc4-cassandra: Gemiddelde throughput : 3,207,586 events/sec
-  dc4-kafka: Gemiddelde throughput : 3,673,092 events/sec
-  dc4-spark: Gemiddelde throughput : 3,948,881 events/sec
-
-STAP 8 - Data Integriteit Test (NFR-03)...
-----------------------------------------------------------
-============================================================
- Eurovision Audit Systeem - Data Integriteit Test
- NFR-03: Geen dataverlies
- Odisee Hogeschool - Mega Data Challenge 2025-2026
- Gestart op: 2026-05-25 06:01:29
-============================================================
-
-STAP 0 - Tabel leegmaken voor schone test...
-  Tabel geleegd. Start met 0 stemmen.
-
-STAP 1 - Baseline telling:
-  Stemmen in Cassandra VOOR test :          0
-
-STAP 2 - Exact 1,000,000 stemmen invoegen...
-    100,000 ingevoegd | 81s verstreken
-    200,000 ingevoegd | 199s verstreken
-    300,000 ingevoegd | 361s verstreken
-    400,000 ingevoegd | 538s verstreken
-    500,000 ingevoegd | 715s verstreken
-    600,000 ingevoegd | 889s verstreken
-    700,000 ingevoegd | 1072s verstreken
-    800,000 ingevoegd | 1235s verstreken
-    900,000 ingevoegd | 1403s verstreken
-  1,000,000 ingevoegd | 1568s verstreken
-  Invoegen klaar in 1568 seconden
-
-STAP 3 - Telling per land na invoegen:
-  Land               Stemmen
-  --------------- ----------
-  Belgium             99,685
-  Netherlands        100,307
-  France             100,093
-  Germany             99,808
-  Italy               99,522
-  Spain              100,255
-  Sweden              99,896
-  Norway              99,920
-  Ukraine            100,016
-  Portugal           100,498
-  --------------- ----------
-  TOTAAL           1,000,000
-
-STAP 4 - Verificatie NFR-03:
-  Stemmen VOOR   :          0
-  Stemmen NA     :  1,000,000
-  Verschil       :  1,000,000
-  Verwacht       :  1,000,000
-
-============================================================
- GESLAAGD - NFR-03 VOLDAAN
- 1,000,000 stemmen ingevoegd, 1,000,000 gevonden
- Geen dataverlies in Cassandra
-============================================================
- Gestart  : 2026-05-25 06:01:29
- Gestopt  : 2026-05-25 06:27:42
- Invoegen : 1568 seconden
- Totale uitvoeringstijd: 26 min 13 sec
-============================================================
-
-STAP 9 - Consistency Check (NFR-04)...
-----------------------------------------------------------
-============================================================
- Eurovision Audit Systeem - Consistency Check
- NFR-04: Scorebord == Hadoop herberekening
- Odisee Hogeschool - Mega Data Challenge 2025-2026
- Gestart op: 2026-05-25 06:27:44
-============================================================
-
-STAP 1 - Scorebord uitlezen (gesimuleerde live scores)...
-  10 landen gelezen uit scorebord.
-
-STAP 2 - Hadoop herberekening (onafhankelijke hertelling)...
-  10 landen herberekend.
-
-STAP 3 - Vergelijking scorebord vs herberekening:
-  Land               Scorebord  Herberekend    Match
-  --------------- ------------ ------------ --------
-  Belgium               99,685       99,685       OK
-  Netherlands          100,307      100,307       OK
-  France               100,093      100,093       OK
-  Germany               99,808       99,808       OK
-  Italy                 99,522       99,522       OK
-  Spain                100,255      100,255       OK
-  Sweden                99,896       99,896       OK
-  Norway                99,920       99,920       OK
-  Ukraine              100,016      100,016       OK
-  Portugal             100,498      100,498       OK
-  --------------- ------------ ------------ --------
-  TOTAAL             1,000,000    1,000,000       OK
-
-============================================================
- GESLAAGD - CONSISTENCY CHECK VOLDAAN
- Scorebord en herberekening komen overeen
- Totaal gevalideerde stemmen: 1,000,000
- Uitslag is gevalideerd - geen afwijkingen gevonden
-============================================================
- Gestart  : 2026-05-25 06:27:44
- Gestopt  : 2026-05-25 06:27:52
- Totale uitvoeringstijd: 0 min 7 sec
-============================================================
-
-==========================================================
-   EINDRAPPORT EUROVISION AUDIT PIPELINE
-==========================================================
-  Stap 1:  VM's opgestart             ✓
-  Stap 2:  SSH bereikbaarheid         ✓
-  Stap 3:  Docker containers gestart  ✓
-  Stap 4:  Containers overzicht       ✓
-  Stap 5:  Producers gestart          ✓
-  Stap 6:  Stemmen gegenereerd        ✓
-  Stap 7:  Throughput gemeten         ✓
-  Stap 8:  NFR-03 integriteit         ✓
-  Stap 9:  NFR-04 consistency         ✓
-
-  VM's blijven draaien na pipeline!
-
-  Gestart  : 2026-05-25 05:58:07
-  Gestopt  : 2026-05-25 06:27:53
-  Totale uitvoeringstijd: 29 min 46 sec
-==========================================================
