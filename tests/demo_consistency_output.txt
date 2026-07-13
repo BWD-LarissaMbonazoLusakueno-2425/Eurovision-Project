@@ -1,0 +1,39 @@
+============================================================
+ Eurovision Audit Systeem - Consistency Check
+ NFR-04: Scorebord == Hadoop herberekening
+ Odisee Hogeschool - Mega Data Challenge 2025-2026
+ Gestart op: 2026-05-24 20:43:14
+============================================================
+
+STAP 1 - Scorebord uitlezen (gesimuleerde live scores)...
+  10 landen gelezen uit scorebord.
+
+STAP 2 - Hadoop herberekening (onafhankelijke hertelling)...
+  10 landen herberekend.
+
+STAP 3 - Vergelijking scorebord vs herberekening:
+  Land               Scorebord  Herberekend    Match
+  --------------- ------------ ------------ --------
+  Belgium               99,873       99,873       OK
+  Netherlands           99,837       99,837       OK
+  France                99,817       99,817       OK
+  Germany              100,106      100,106       OK
+  Italy                 99,845       99,845       OK
+  Spain                100,122      100,122       OK
+  Sweden                99,880       99,880       OK
+  Norway               100,189      100,189       OK
+  Ukraine              100,344      100,344       OK
+  Portugal              99,987       99,987       OK
+  --------------- ------------ ------------ --------
+  TOTAAL             1,000,000    1,000,000       OK
+
+============================================================
+ GESLAAGD - CONSISTENCY CHECK VOLDAAN
+ Scorebord en herberekening komen overeen
+ Totaal gevalideerde stemmen: 1,000,000
+ Uitslag is gevalideerd - geen afwijkingen gevonden
+============================================================
+ Gestart  : 2026-05-24 20:43:14
+ Gestopt  : 2026-05-24 20:43:24
+ Totale uitvoeringstijd: 0 min 9 sec
+============================================================
